@@ -20,13 +20,13 @@ const HeroSection = () => {
           
           {/* Main headline */}
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-primary leading-tight mb-6 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-            Uma estrutura validada para vendedores que querem{" "}
-            <span className="text-secondary">bater a meta mais rápido.</span>
+            Vendedores que querem previsibilidade de vendas{" "}
+            <span className="text-secondary">usam essa estrutura.</span>
           </h1>
           
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            Captação de leads qualificados direto no WhatsApp, sem depender apenas de indicação ou fluxo de loja.
+            Captação de leads qualificados
           </p>
           
           {/* CTA Button */}
