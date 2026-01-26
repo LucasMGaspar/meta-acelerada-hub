@@ -1,25 +1,33 @@
 import { Quote, Star } from "lucide-react";
+import novaesPhoto from "@/assets/testimonial-novaes.png";
+import testimonial2 from "@/assets/testimonial-2.jpg";
+import testimonial3 from "@/assets/testimonial-3.jpg";
+import testimonial4 from "@/assets/testimonial-4.jpg";
 
 const testimonials = [
   {
-    content: "Comecei a receber leads todos os dias e já fechei venda usando o Acelera Metas.",
-    author: "Vendedor de automóveis",
-    role: "São Paulo, SP",
+    content: "O Acelera Metas mudou completamente minha forma de prospectar. Leads qualificados chegando todos os dias, e o melhor: já vêm interessados! Recomendo demais.",
+    author: "Novaes da Honda",
+    role: "Vendedor de Automóveis",
+    image: novaesPhoto,
   },
   {
-    content: "O processo é simples e os leads chegam muito mais preparados. Facilita demais na abordagem.",
-    author: "Consultor imobiliário",
-    role: "Rio de Janeiro, RJ",
+    content: "O processo é simples e os leads chegam muito mais preparados. Facilita demais na abordagem e no fechamento.",
+    author: "Ricardo Mendes",
+    role: "Consultor Imobiliário - Rio de Janeiro, RJ",
+    image: testimonial2,
   },
   {
-    content: "Hoje tenho previsibilidade, não dependo só de indicação. Mudou minha forma de prospectar.",
-    author: "Vendedora de seguros",
-    role: "Belo Horizonte, MG",
+    content: "Hoje tenho previsibilidade, não dependo só de indicação. Mudou minha forma de prospectar e bater metas.",
+    author: "Carla Ribeiro",
+    role: "Vendedora de Seguros - Belo Horizonte, MG",
+    image: testimonial3,
   },
   {
-    content: "Já usei para vender e vou continuar usando. Os leads realmente chegam interessados.",
-    author: "Representante comercial",
-    role: "Curitiba, PR",
+    content: "Já usei para vender e vou continuar usando. Os leads realmente chegam interessados e prontos para fechar.",
+    author: "Fernando Costa",
+    role: "Representante Comercial - Curitiba, PR",
+    image: testimonial4,
   },
 ];
 
@@ -65,10 +73,12 @@ const TestimonialsSection = () => {
               </p>
 
               {/* Author */}
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full gradient-blue flex items-center justify-center text-white font-bold text-sm">
-                  {testimonial.author.charAt(0)}
-                </div>
+              <div className="flex items-center gap-4">
+                <img 
+                  src={testimonial.image} 
+                  alt={testimonial.author}
+                  className="w-14 h-14 rounded-full object-cover border-2 border-secondary/30"
+                />
                 <div>
                   <p className="font-semibold text-primary text-sm">{testimonial.author}</p>
                   <p className="text-muted-foreground text-xs">{testimonial.role}</p>
