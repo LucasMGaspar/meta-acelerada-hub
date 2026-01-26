@@ -26,7 +26,7 @@ const HeroSection = () => {
           
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            Captação de leads qualificados
+            Captação de leads qualificados com processo validado para vendedores
           </p>
           
           {/* CTA Button */}
