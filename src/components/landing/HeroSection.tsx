@@ -32,7 +32,7 @@ const HeroSection = () => {
           {/* CTA Button */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-fade-up" style={{ animationDelay: '0.3s' }}>
             <a
-              href="https://wa.me/5511999999999"
+              href="https://wa.me/5533998311915"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl gradient-orange text-white font-bold text-lg transition-all hover:brightness-110 hover:shadow-cta hover:scale-105"
