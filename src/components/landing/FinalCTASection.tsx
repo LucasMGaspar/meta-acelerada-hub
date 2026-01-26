@@ -37,12 +37,12 @@ const FinalCTASection = () => {
 
           {/* CTA Button */}
           <a
-            href="https://wa.me/5511999999999"
+            href="https://wa.me/5533998311915"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 px-10 py-5 rounded-xl gradient-orange text-white font-bold text-lg transition-all hover:brightness-110 hover:shadow-cta hover:scale-105"
           >
-            Falar no WhatsApp
+            Quero acelerar minhas metas
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
 
