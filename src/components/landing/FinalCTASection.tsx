@@ -1,30 +1,32 @@
 import { ArrowRight, Shield, Clock, Users } from "lucide-react";
+import { motion } from "framer-motion";
 
 const FinalCTASection = () => {
   return (
-    <section className="section-padding relative overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 gradient-blue opacity-[0.03]" />
-      
+    <section className="section-padding relative overflow-hidden bg-muted/30">
       <div className="container mx-auto relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+          className="max-w-2xl mx-auto text-center"
+        >
           {/* Icon */}
-          <div className="w-16 h-16 mx-auto mb-6 rounded-2xl gradient-orange flex items-center justify-center animate-float">
-            <Shield className="w-8 h-8 text-white" />
+          <div className="w-14 h-14 mx-auto mb-6 rounded-2xl gradient-orange flex items-center justify-center animate-float">
+            <Shield className="w-7 h-7 text-primary-foreground" />
           </div>
-          
-          {/* Headline */}
-          <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4">
+
+          <h2 className="section-title mb-4">
             Pronto para acelerar suas metas?
           </h2>
-          
-          {/* Subtext */}
-          <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+
+          <p className="section-subtitle mb-8">
             Estrutura pensada para poucos vendedores por vez, mantendo qualidade no atendimento.
           </p>
 
           {/* Trust badges */}
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 mb-8">
+          <div className="flex flex-wrap items-center justify-center gap-6 mb-10">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Clock className="w-4 h-4 text-secondary" />
               <span>Vagas limitadas</span>
@@ -35,22 +37,21 @@ const FinalCTASection = () => {
             </div>
           </div>
 
-          {/* CTA Button */}
+          {/* CTA */}
           <a
             href="https://wa.me/5533998311915"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-10 py-5 rounded-xl gradient-orange text-white font-bold text-lg transition-all hover:brightness-110 hover:shadow-cta hover:scale-105"
+            className="cta-button group"
           >
             Quero acelerar minhas metas
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
 
-          {/* Disclaimer */}
           <p className="text-xs text-muted-foreground mt-6">
             Ao clicar, você será direcionado para o WhatsApp para conversar com nossa equipe.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
