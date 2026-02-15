@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { HelpCircle } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -31,41 +32,53 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section id="faq" className="section-padding">
+    <section id="faq" className="section-padding overflow-hidden">
       <div className="container mx-auto max-w-3xl">
-        <div className="text-center mb-16">
-          <span className="section-badge mb-4">FAQ</span>
-          <h2 className="section-title mt-4 mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <motion.div
+            animate={{ rotate: [0, 10, -10, 0] }}
+            transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+            className="inline-block mb-4"
+          >
+            <HelpCircle className="w-8 h-8 text-secondary mx-auto" />
+          </motion.div>
+          <h2 className="section-title mb-4">
             Dúvidas Frequentes
           </h2>
           <p className="section-subtitle">
             Tire suas principais dúvidas sobre a Acelera Metas
           </p>
-        </div>
+        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.4 }}
-        >
-          <Accordion type="single" collapsible className="w-full space-y-3">
-            {faqs.map((faq, index) => (
+        <Accordion type="single" collapsible className="w-full space-y-3">
+          {faqs.map((faq, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ delay: index * 0.08, duration: 0.5 }}
+            >
               <AccordionItem
-                key={index}
                 value={`item-${index}`}
-                className="card-elevated px-6 data-[state=open]:shadow-medium transition-shadow"
+                className="card-elevated px-6 data-[state=open]:shadow-elevated transition-shadow duration-300"
               >
-                <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-5 text-base">
+                <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-5 text-base hover:text-secondary transition-colors">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground pb-5 leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
-            ))}
-          </Accordion>
-        </motion.div>
+            </motion.div>
+          ))}
+        </Accordion>
       </div>
     </section>
   );
