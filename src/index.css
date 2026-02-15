@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-/* Acelera Metas Design System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @layer base {
   :root {
@@ -18,11 +16,11 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 60% 15%;
 
-    /* Primary: Dark Blue (Trust, Professionalism) */
+    /* Primary: Dark Blue */
     --primary: 220 70% 18%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Orange (Growth, Action, Speed) */
+    /* Secondary: Orange */
     --secondary: 25 95% 53%;
     --secondary-foreground: 0 0% 100%;
 
@@ -36,46 +34,42 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 20% 88%;
-    --input: 220 20% 88%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
     --ring: 25 95% 53%;
 
     --radius: 0.75rem;
 
-    /* Custom tokens */
+    /* Extended tokens */
     --orange-glow: 25 100% 60%;
-    --blue-light: 220 60% 95%;
+    --blue-light: 220 60% 96%;
     --success: 145 65% 42%;
+    --surface: 220 20% 97%;
+    --surface-elevated: 0 0% 100%;
   }
 
   .dark {
     --background: 220 60% 8%;
     --foreground: 210 20% 98%;
-
     --card: 220 55% 12%;
     --card-foreground: 210 20% 98%;
-
     --popover: 220 55% 12%;
     --popover-foreground: 210 20% 98%;
-
     --primary: 210 40% 98%;
     --primary-foreground: 220 70% 18%;
-
     --secondary: 25 95% 53%;
     --secondary-foreground: 0 0% 100%;
-
     --muted: 220 40% 18%;
     --muted-foreground: 215 20% 65%;
-
     --accent: 220 50% 30%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 220 40% 20%;
     --input: 220 40% 20%;
     --ring: 25 95% 53%;
+    --surface: 220 50% 10%;
+    --surface-elevated: 220 55% 14%;
   }
 }
 
@@ -86,33 +80,80 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 }
 
 @layer components {
   .gradient-orange {
-    @apply bg-gradient-to-r from-secondary to-[hsl(var(--orange-glow))];
+    background: linear-gradient(135deg, hsl(25 95% 53%), hsl(25 100% 60%));
   }
 
   .gradient-blue {
-    @apply bg-gradient-to-br from-primary to-accent;
+    background: linear-gradient(135deg, hsl(220 70% 18%), hsl(220 60% 28%));
   }
 
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary;
-  }
-
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  .text-gradient-orange {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(25 95% 53%), hsl(25 100% 58%));
   }
 
   .section-padding {
-    @apply py-16 md:py-24 px-4 md:px-8;
+    @apply py-20 md:py-28 px-4 md:px-8;
+  }
+
+  .card-elevated {
+    @apply bg-card rounded-2xl border border-border;
+    box-shadow: 0 1px 3px 0 hsl(220 60% 15% / 0.04), 0 1px 2px -1px hsl(220 60% 15% / 0.04);
+  }
+
+  .card-elevated-hover {
+    @apply card-elevated transition-all duration-300;
+  }
+
+  .card-elevated-hover:hover {
+    box-shadow: 0 10px 40px -12px hsl(220 60% 15% / 0.12);
+    transform: translateY(-2px);
+  }
+
+  .cta-button {
+    @apply inline-flex items-center justify-center gap-3 font-bold text-lg transition-all duration-200;
+    @apply px-8 py-4 md:px-10 md:py-5 rounded-2xl;
+    @apply gradient-orange text-primary-foreground;
+    box-shadow: 0 4px 14px -3px hsl(25 95% 53% / 0.45);
+    /* Thumb-friendly minimum: 48px height */
+    min-height: 56px;
+  }
+
+  .cta-button:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 8px 24px -4px hsl(25 95% 53% / 0.5);
+    transform: translateY(-1px);
+  }
+
+  .cta-button:active {
+    transform: translateY(0);
+    filter: brightness(0.98);
+  }
+
+  .section-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold;
+    @apply bg-secondary/10 text-secondary border border-secondary/15;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary leading-tight tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed;
   }
 }
 
@@ -123,10 +164,6 @@
 
   @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  .animate-pulse-slow {
-    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    50% { transform: translateY(-8px); }
   }
 }
