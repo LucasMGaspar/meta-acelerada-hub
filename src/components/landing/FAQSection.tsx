@@ -32,8 +32,11 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section id="faq" className="section-padding overflow-hidden">
-      <div className="container mx-auto max-w-3xl">
+    <section id="faq" className="section-padding overflow-hidden relative">
+      {/* Dot pattern */}
+      <div className="absolute inset-0 bg-dot-pattern pointer-events-none" />
+
+      <div className="container mx-auto max-w-3xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -49,7 +52,7 @@ const FAQSection = () => {
             <HelpCircle className="w-8 h-8 text-secondary mx-auto" />
           </motion.div>
           <h2 className="section-title mb-4">
-            Dúvidas Frequentes
+            Dúvidas <span className="text-gradient-orange">Frequentes</span>
           </h2>
           <p className="section-subtitle">
             Tire suas principais dúvidas sobre a Acelera Metas
@@ -67,7 +70,7 @@ const FAQSection = () => {
             >
               <AccordionItem
                 value={`item-${index}`}
-                className="card-elevated px-6 data-[state=open]:shadow-elevated transition-shadow duration-300"
+                className="card-elevated px-6 data-[state=open]:shadow-card-hover transition-all duration-300"
               >
                 <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-5 text-base hover:text-secondary transition-colors">
                   {faq.question}

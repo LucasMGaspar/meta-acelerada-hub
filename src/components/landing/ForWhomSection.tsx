@@ -1,4 +1,4 @@
-import { CheckCircle, XCircle } from "lucide-react";
+import { CheckCircle, XCircle, ThumbsUp, ThumbsDown } from "lucide-react";
 import { motion } from "framer-motion";
 
 const forWho = [
@@ -25,49 +25,78 @@ interface ListCardProps {
 const ListCard = ({ type, title, items, delay = 0 }: ListCardProps) => {
   const isPositive = type === "positive";
   const Icon = isPositive ? CheckCircle : XCircle;
-  const colorClass = isPositive ? "text-success" : "text-destructive";
-  const bgClass = isPositive ? "bg-success/10 border-success/20" : "bg-destructive/10 border-destructive/20";
-  const badgeBg = isPositive ? "bg-success/10 text-success" : "bg-destructive/10 text-destructive";
+  const HeaderIcon = isPositive ? ThumbsUp : ThumbsDown;
+  const colorClass = isPositive ? "text-emerald-500" : "text-red-400";
+  const cardClass = isPositive ? "card-verdict card-verdict--positive" : "card-verdict card-verdict--negative";
+  const badgeBg = isPositive
+    ? "bg-emerald-500/10 text-emerald-600 border border-emerald-500/15"
+    : "bg-red-500/10 text-red-500 border border-red-500/15";
+  const iconBg = isPositive
+    ? "bg-emerald-500/8"
+    : "bg-red-500/8";
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: isPositive ? -40 : 40, scale: 0.95 }}
-      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, delay, type: "spring", stiffness: 100 }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className={`card-elevated p-6 md:p-8 border-2 ${bgClass} transition-shadow duration-300 hover:shadow-elevated`}
+      className={`${cardClass} p-7 md:p-9`}
     >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: delay + 0.2, type: "spring", stiffness: 300 }}
-        className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${badgeBg} font-semibold text-sm mb-6`}
-      >
-        <Icon className="w-4 h-4" />
-        {title}
-      </motion.div>
+      {/* Header row */}
+      <div className="flex items-center gap-3 mb-7">
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: delay + 0.15, type: "spring", stiffness: 300 }}
+          className={`w-10 h-10 rounded-xl ${iconBg} flex items-center justify-center`}
+        >
+          <HeaderIcon className={`w-5 h-5 ${colorClass}`} />
+        </motion.div>
+        <motion.span
+          initial={{ opacity: 0, x: -10 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: delay + 0.2 }}
+          className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full ${badgeBg} font-semibold text-sm font-mono-brand`}
+        >
+          {title}
+        </motion.span>
+      </div>
 
-      <ul className="space-y-4">
+      {/* Divider */}
+      <div
+        className="h-px mb-6"
+        style={{
+          background: isPositive
+            ? 'linear-gradient(90deg, hsl(152 60% 40% / 0.2), transparent)'
+            : 'linear-gradient(90deg, hsl(0 84% 60% / 0.15), transparent)',
+        }}
+      />
+
+      {/* List items */}
+      <ul className="space-y-1">
         {items.map((item, index) => (
           <motion.li
             key={index}
-            initial={{ opacity: 0, x: isPositive ? -20 : 20 }}
+            initial={{ opacity: 0, x: -15 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: delay + 0.3 + index * 0.1, duration: 0.4 }}
-            className="flex items-start gap-3"
+            transition={{ delay: delay + 0.3 + index * 0.08, duration: 0.4 }}
+            className="verdict-item"
           >
             <motion.div
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: delay + 0.4 + index * 0.1, type: "spring", stiffness: 400 }}
+              transition={{ delay: delay + 0.35 + index * 0.08, type: "spring", stiffness: 400 }}
+              className="shrink-0 mt-0.5"
             >
-              <Icon className={`w-5 h-5 ${colorClass} shrink-0 mt-0.5`} />
+              <Icon className={`w-[18px] h-[18px] ${colorClass}`} />
             </motion.div>
-            <span className="text-foreground font-medium text-sm md:text-base">{item}</span>
+            <span className="text-foreground font-medium text-sm md:text-[15px] leading-snug">{item}</span>
           </motion.li>
         ))}
       </ul>
@@ -77,8 +106,11 @@ const ListCard = ({ type, title, items, delay = 0 }: ListCardProps) => {
 
 const ForWhomSection = () => {
   return (
-    <section className="section-padding bg-muted/30 overflow-hidden">
-      <div className="container mx-auto">
+    <section className="section-padding bg-muted/30 overflow-hidden relative">
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 bg-grid-pattern pointer-events-none" />
+
+      <div className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -88,18 +120,20 @@ const ForWhomSection = () => {
         >
           <span className="section-badge mb-4">Transparência</span>
           <h2 className="section-title mt-4 mb-4">
-            Para quem é o Acelera Metas?
+            Para quem é o <span className="text-gradient-purple">Acelera Metas</span>?
           </h2>
           <p className="section-subtitle">
             Queremos trabalhar com vendedores comprometidos. Veja se você se encaixa.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-5 md:gap-7 max-w-4xl mx-auto">
           <ListCard type="positive" title="Para quem é" items={forWho} delay={0} />
-          <ListCard type="negative" title="Para quem NÃO é" items={notForWho} delay={0.15} />
+          <ListCard type="negative" title="Para quem NÃO é" items={notForWho} delay={0.12} />
         </div>
       </div>
+      {/* Section divider */}
+      <div className="absolute bottom-0 left-0 right-0 section-divider" />
     </section>
   );
 };

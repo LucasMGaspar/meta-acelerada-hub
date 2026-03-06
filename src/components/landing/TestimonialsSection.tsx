@@ -35,8 +35,11 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section id="depoimentos" className="section-padding bg-muted/30 overflow-hidden">
-      <div className="container mx-auto">
+    <section id="depoimentos" className="section-padding bg-muted/30 overflow-hidden relative">
+      {/* Grid pattern texture */}
+      <div className="absolute inset-0 bg-grid-pattern pointer-events-none" />
+
+      <div className="container mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -47,7 +50,7 @@ const TestimonialsSection = () => {
         >
           <span className="section-badge mb-4">Prova Social</span>
           <h2 className="section-title mt-4 mb-4">
-            O que dizem os vendedores
+            O que dizem os <span className="text-gradient-purple">vendedores</span>
           </h2>
           <p className="section-subtitle">
             Vendedores reais que já utilizam o Acelera Metas para captar leads e fechar vendas.
@@ -70,7 +73,7 @@ const TestimonialsSection = () => {
               }}
               whileHover={{ y: -6, transition: { duration: 0.2 } }}
               className={`card-elevated p-6 md:p-8 relative group cursor-default
-                transition-shadow duration-300 hover:shadow-elevated
+                transition-all duration-300 hover:shadow-card-hover
                 ${t.featured ? "md:col-span-2 md:flex md:items-center md:gap-8" : ""}`}
             >
               {/* Animated quote accent */}
@@ -79,7 +82,7 @@ const TestimonialsSection = () => {
                 whileInView={{ rotate: 0, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 + index * 0.1, type: "spring", stiffness: 300 }}
-                className="absolute top-4 right-4 w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center"
+                className="absolute top-4 right-4 w-10 h-10 rounded-xl glass-card flex items-center justify-center"
               >
                 <Quote className="w-5 h-5 text-secondary" />
               </motion.div>
@@ -135,8 +138,8 @@ const TestimonialsSection = () => {
                     />
                   )}
                   <div>
-                    <p className="font-semibold text-primary text-sm">{t.author}</p>
-                    <p className="text-muted-foreground text-xs">{t.role}</p>
+                    <p className="font-semibold text-foreground text-sm">{t.author}</p>
+                    <p className="text-muted-foreground text-xs font-mono-brand">{t.role}</p>
                   </div>
                 </div>
               </div>
@@ -144,6 +147,8 @@ const TestimonialsSection = () => {
           ))}
         </div>
       </div>
+      {/* Section divider */}
+      <div className="absolute bottom-0 left-0 right-0 section-divider" />
     </section>
   );
 };

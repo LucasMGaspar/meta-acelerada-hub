@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 const FinalCTASection = () => {
   return (
     <section className="section-padding relative overflow-hidden bg-muted/30">
+      {/* Dot pattern texture */}
+      <div className="absolute inset-0 bg-dot-pattern pointer-events-none" />
       {/* Animated background elements */}
       <motion.div
         animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
@@ -15,6 +17,9 @@ const FinalCTASection = () => {
         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         className="absolute bottom-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"
       />
+
+      {/* Aurora background */}
+      <div className="bg-aurora" />
 
       <div className="container mx-auto relative z-10">
         <motion.div
@@ -36,7 +41,7 @@ const FinalCTASection = () => {
               className="absolute inset-0 gradient-orange rounded-2xl blur-lg"
             />
             <div className="relative w-16 h-16 rounded-2xl gradient-orange flex items-center justify-center">
-              <Shield className="w-8 h-8 text-primary-foreground" />
+              <Shield className="w-8 h-8 text-white" />
             </div>
             <motion.div
               animate={{ rotate: 360 }}
@@ -54,7 +59,7 @@ const FinalCTASection = () => {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="section-title mb-4"
           >
-            Pronto para acelerar suas metas?
+            Pronto para <span className="text-gradient-orange">acelerar</span> suas metas?
           </motion.h2>
 
           <motion.p
@@ -82,7 +87,7 @@ const FinalCTASection = () => {
               <motion.div
                 key={item.label}
                 whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-2 text-sm text-muted-foreground px-4 py-2 rounded-full bg-card border border-border"
+                className="flex items-center gap-2 text-sm text-muted-foreground px-4 py-2 rounded-full glass-card font-mono-brand"
               >
                 <item.icon className="w-4 h-4 text-secondary" />
                 <span>{item.label}</span>
